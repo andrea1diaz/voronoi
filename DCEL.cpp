@@ -1,8 +1,18 @@
 #include <iostream>
 #include <vector>
+#include <utility>
 
 class HalfEdge;
 class Vertex;
+class Face;
+
+class Site {
+	private:
+		int index;
+		std::pair <int, int> point;
+		Face* face;
+};
+
 
 class Face {
 	public:
@@ -21,10 +31,6 @@ class Face {
 
 class HalfEdge {
 	public:
-		int getData () {
-			return data;
-		}
-
 		void setTwin (HalfEdge* half_edge) {
 			this->twin = half_edge;
 			half_edge->twin = this;
@@ -45,19 +51,16 @@ class HalfEdge {
 		HalfEdge* prev;
 		HalfEdge* next;
 		Vertex* origin;
+		Vertex* destination;
 		Face* face;
-		int data;
 };
 
 class Vertex {
 	public:
-		int getData () {
-			return data;
-		}
 
 	private:
 		HalfEdge* incidentEdge;
-		int data;
+		std::pair <int, int> point;
 };
 
 class Mesh {
