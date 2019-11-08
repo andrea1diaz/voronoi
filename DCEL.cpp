@@ -1,8 +1,12 @@
 #include <iostream>
 #include <vector>
 
-class HalfEdge;
-class Vertex;
+#define vpoint std::vector<Point>
+
+class Point{
+    public:
+        int x, y;
+}
 
 class Face {
 	public:
@@ -17,6 +21,7 @@ class Face {
 	private:
 		HalfEdge* boundary;
 		int data;
+        Site *site;
 };
 
 class HalfEdge {
@@ -56,9 +61,17 @@ class Vertex {
 		}
 
 	private:
+        vpoint point;
 		HalfEdge* incidentEdge;
 		int data;
 };
+
+class Site{
+    public:
+        int index;
+        vpoint point;
+        Face *face;
+}
 
 class Mesh {
 	public:
@@ -67,5 +80,7 @@ class Mesh {
 		std::vector<Face> faces;
 		std::vector<HalfEdge> edges;
 		std::vector<Vertex> vertices;
+        std::vector<Site> sites;
 };
+        
 
